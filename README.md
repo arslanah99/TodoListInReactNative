@@ -1,4 +1,5 @@
 # TodoListInReactNative
+This is a complete todo list made in React Native.
 
 ## Installation
 Clone this file
