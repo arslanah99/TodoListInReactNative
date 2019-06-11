@@ -15,7 +15,7 @@ export default class Main extends React.Component {
     render(){
 
         let notes = this.state.noteArray.map((val, key) => {
-            return <Note key={key} keyval={key} deleteMethod={() => this.deleteNote(key)}/>
+            return <Note key={key} keyval={key} val={val} deleteMethod={() => this.deleteNote(key)} />
         })
 
         return (
@@ -26,7 +26,7 @@ export default class Main extends React.Component {
                 </View>
 
                 <ScrollView style={styles.ScrollView}>
-
+                    {notes}
                 </ScrollView>
 
                 <View style={styles.footer}>
@@ -49,7 +49,14 @@ export default class Main extends React.Component {
         );
     }
     addNote() {
-        alert('test')
+        if (this.state.noteText){
+            var d = new Date();
+            this.state.noteArray.push({
+                'date': d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDay(), 'note': this.state.noteText
+            });
+            this.setState({ noteArray: this.state.noteArray })
+            this.setState({ noteText: ""});
+        }
     }
 }
 
