@@ -1,8 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import Note from './note'
 
 export default class Main extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            noteArray: [],
+            noteText: ''
+        }
+    }
+
     render(){
+
+        let notes = this.state.noteArray.map((val, key) => {
+            return <Note key={key} keyval={key} deleteMethod={() => this.deleteNote(key)}/>
+        })
+
         return (
             <View style={styles.container}>
                 
@@ -17,6 +32,8 @@ export default class Main extends React.Component {
                 <View style={styles.footer}>
 
                     <TextInput style={styles.textInput}
+                    onChangeText={(noteText) => this.setState({noteText})}
+                    value={this.state.noteText}
                     placeholder='>Create a todo'
                     placeholderTextColor='white'
                     underlineColorAndroid='transparent'>
@@ -24,12 +41,15 @@ export default class Main extends React.Component {
 
                 </View>
 
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity onPress={this.addNote.bind(this)} style={styles.addButton}>
                     <Text style={styles.addButtonText}>+</Text>
                 </TouchableOpacity>
 
             </View>
         );
+    }
+    addNote() {
+        alert('test')
     }
 }
 
