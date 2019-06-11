@@ -16,13 +16,17 @@ export default class Main extends React.Component {
 
                 <View style={styles.footer}>
 
-                    <TextInput style={styles.TextInput}
+                    <TextInput style={styles.textInput}
                     placeholder='>Create a todo'
                     placeholderTextColor='white'
                     underlineColorAndroid='transparent'>
                     </TextInput>
 
                 </View>
+
+                <TouchableOpacity style={styles.addButton}>
+                    <Text style={styles.addButtonText}>+</Text>
+                </TouchableOpacity>
 
             </View>
         );
